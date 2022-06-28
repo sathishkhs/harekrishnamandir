@@ -2,5 +2,5 @@
 deployment:
     tasks:
         - export DEPLOYPATH=/home/digiytpm/harekrishnamandir.org
-        - /bin/cp * $DEPLOYPATH
+        - /bin/cp -R $DEPLOYPATH
         
