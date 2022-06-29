@@ -97,6 +97,10 @@ define('BANNER_IMAGE_PATH', 'uploads/banners/');
 if (!file_exists('uploads/banners/')) {
     mkdir('uploads/banners/', 0777, true);
 }
+define('FESTIVAL_BANNER_PATH', 'uploads/festival_banner/');
+if (!file_exists('uploads/festival_banner/')) {
+    mkdir('uploads/festival_banner/', 0777, true);
+}
 define('SEVA_PAGE_BANNER_PATH', 'uploads/seva_page_banner/');
 if (!file_exists('uploads/seva_page_banner/')) {
     mkdir('uploads/seva_page_banner/', 0777, true);

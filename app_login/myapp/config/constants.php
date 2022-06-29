@@ -94,6 +94,14 @@ define('BANNER_IMAGE_PATH', '../uploads/banners/');
 if (!file_exists('../uploads/banners/')) {
     mkdir('../uploads/banners/', 0777, true);
 }
+define('FESTIVAL_BANNER_PATH', '../uploads/festival_banner/');
+if (!file_exists('../uploads/festival_banner/')) {
+    mkdir('../uploads/festival_banner/', 0777, true);
+}
+define('SEVA_IMAGE_PATH', '../uploads/seva_image/');
+if (!file_exists('../uploads/seva_image/')) {
+    mkdir('../uploads/seva_image/', 0777, true);
+}
 define('DONATIONS_PATH', '../uploads/donations/');
 if (!file_exists('../uploads/donations/')) {
     mkdir('../uploads/donations/', 0777, true);

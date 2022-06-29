@@ -18,7 +18,7 @@
                     <div class="box box-info">
                         <div class="box-header with-border">
                             <form class="form-horizontal" action="sevas/sevas_page_save" method="post" enctype="multipart/form-data">
-                                <input name="sevas_page_id" type="hidden" value="<?php echo (!empty($query->sevas_page_id)) ? $query->sevas_page_id : ''; ?>" />
+                                <input name="festival_id" type="hidden" value="<?php echo (!empty($query->festival_id)) ? $query->festival_id : ''; ?>" />
                                 <br />
                                 <div class="form-group">
                                     <label class="col-sm-6 col-md-6 control-label" for="form-field-1">Festival Title </label>

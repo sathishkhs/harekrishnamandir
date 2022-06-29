@@ -63,10 +63,10 @@
 								<label class="col-sm-2 col-md-2 control-label" for="form-field-4">Select Festival</label>
 								<div class="col-sm-10">
 								    <span class="eror"><?php echo form_error('sevas_id'); ?></span>
-									<select class="form-control" name="sevas_page_id" id="sevas_page_id"  >
+									<select class="form-control" name="festival_id" id="festival_id"  >
 										<option value="">Select Festivals</option>
 										<?php foreach ($sevas_page as $row) : ?>
-                                            <option value="<?php echo $row->sevas_page_id; ?>" <?php echo (!empty($query->sevas_page_id) && $query->sevas_page_id == $row->sevas_page_id) ? 'selected' : ''; ?>><?php echo $row->sevas_page_title; ?></option>
+                                            <option value="<?php echo $row->festival_id; ?>" <?php echo (!empty($query->festival_id) && $query->festival_id == $row->festival_id) ? 'selected' : ''; ?>><?php echo $row->sevas_page_title; ?></option>
                                         <?php endforeach ?>
 									</select>
 								</div>

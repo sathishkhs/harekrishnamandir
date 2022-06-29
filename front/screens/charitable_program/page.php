@@ -23,9 +23,18 @@
                   <h3 class="mt-0 line-bottom">Offer Seva<span class="font-weight-300"> Now!</span></h3>
 
                   <!-- ===== START: Paypal Both Onetime/Recurring Form ===== -->
-                  <form id="popup_paypal_donate_form_onetime_recurring" action="<?php echo base_url($page_items->page_slug); ?>"  method="POST" enctype="multipart/form-data">
-                    <input name="table_name" type="hidden" value="payments">
-
+                  <form id="popup_paypal_donate_form_onetime_recurring" action=""  method="POST" enctype="multipart/form-data">
+                      <?php if($this->config->item('payment_mode') == 'test'){ ?>
+                      <input name="table_name" type="hidden" value="test_payments">
+                      <?php } else{ ?>
+                        <input name="table_name" type="hidden" value="payments">
+                        <?php } ?>
+                        <input type="hidden" name="donation_type" value="charitable_programme">
+                        <input name="seva_name" type="hidden" value="<?php echo $page_items->page_slug; ?>">
+                        <input type="hidden" name="slug" value="<?php echo $page_items->page_slug; ?>">
+                        <input type="hidden" name="festival" value="-">
+                        <input type="hidden" name="currency" value="INR">
+                        
                     <div class="row">
                        
                         <div class="form-group d-flex flex-wrap form-control p-20 border-0 mb-2">
@@ -90,7 +99,7 @@
                       </div>
                       <div class="form-group col-md-6">
                         <label>Address</label>
-                        <input id="city" type="text" name="city" value="" class="form-control">
+                        <input id="city" type="text" name="address" value="" class="form-control">
                       </div>
                     </div>
                    
@@ -145,14 +154,13 @@
 
 
 
-<div class="col-sm-12 col-md-12 mx-auto">
-<!--<div class="form-body">-->
+<!-- <div class="col-sm-12 col-md-12 mx-auto">
+
     <div class="row">
         <div class="form-holder">
             <div class="form-content">
                 <div class="form-items">
-<!--                    <h3 class="text-center">Akshayachaitanya Donation Page</h3>-->
-<!--                    <h4>Select any payment gateway to complete payment.</h4>-->
+
                     
                     <form id="razorpay-form" action="<?php echo base_url(); ?>charitable_programs/save_payment" method="POST">
                         <script type="text/javascript"  src="https://checkout.razorpay.com/v1/checkout.js"
@@ -190,19 +198,21 @@
             </div>
         </div>
         </div>
-    <!--</div>-->
+
 </div>
-</div>
+</div> -->
 <style>
   .razorpay-payment-button{
     visibility: hidden;
   }
 </style>
 
+<button id="rzp-button1" class="d-none"></button>
+<div id="failed-form"></div>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
 
-
-
+<!-- 
 <script type="text/javascript">
         window.onload = function() {
             var button = document.getElementById('clickButton');
@@ -230,7 +240,7 @@
         function modal_close() {
             window.location.href = 'annadana-seva';
         }
-    </script>
+    </script> -->
 
 
 
@@ -339,7 +349,56 @@
                   if($('#amount').val() < 300){
                     alert('Minimum Donation is 300')
                   }else{
-                    form.submit();
+                    $.ajax ({ 
+                          type : 'POST', 
+                          url : 'festivals/create_order', 
+                          data : $('#popup_paypal_donate_form_onetime_recurring').serialize (),
+                          complete : function(data){
+                          
+                          console.log(data)
+                            var options = {
+                                    "key": data.responseJSON.keyId, // Enter the Key ID generated from the Dashboard
+                                    "amount": data.responseJSON.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+                                    "currency": data.responseJSON.currency,
+                                    "name": data.responseJSON.company_name,
+                                    "description": data.responseJSON.company_description,
+                                    "image": data.responseJSON.settings.LOGO_IMAGE,
+                                    "order_id": data.responseJSON.razorpay_order_id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+                                    "callback_url": data.responseJSON.callback_url,
+                                    // "redirect": true,
+                                    "retry" : {
+                                      'enabled':false,
+                                    },
+                                    "prefill": {
+                                        "name": data.responseJSON.full_name,
+                                        "email": data.responseJSON.email,
+                                        "contact": data.responseJSON.phone_number,
+                                        "pan_number": data.responseJSON.pan_number,
+                                        "address": data.responseJSON.address,
+                                    },
+                                    "notes": {
+                                        "address": data.responseJSON.address
+                                    },
+                                    "theme": {
+                                        "color": "#3399cc"
+                                    }
+                                };
+                                var rzp1 = new Razorpay(options);
+                                rzp1.on('payment.failed', function (response){
+                                    $('#failed-form').html('<form id="failed_form_submit" action="festivals/failed/'+data.responseJSON.insert_id+'" method="post" style="display:none"><input type="hidden" name="error_code" value="'+response.error.code+'"><input type="hidden" name="error_description" value="'+response.error.description+'"><input type="hidden" name="error_source" value="'+response.error.source+'"><input type="hidden" name="error_reason" value="'+response.error.reason+'"><input type="hidden" name="razorpay_order_id" value="'+response.error.metadata.order_id+'"><input type="hidden" name="razorpay_payment_id" value="'+response.error.metadata.payment_id+'"></form>');
+                                    $('#failed_form_submit').submit();
+                                });
+                              
+                                $('#rzp-button1').click(); 
+                                // $('#rzp-button1').on('click',function(e){
+                                
+                                  rzp1.open();
+                                  // e.preventDefault();
+                                // });
+                                // document.getElementById('rzp-button1').onclick = function(e){
+                                // }
+                          }
+                        })
                   }
                 }
             });

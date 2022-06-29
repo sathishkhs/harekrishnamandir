@@ -30,6 +30,7 @@ class MY_Controller extends CI_Controller {
       $this->load->model('seva_page_model');
       $this->load->model('gallery_model');
       $this->load->model('charitable_programs_model');
+      $this->load->model('festivals_model');
 
       $this->load->model('menuitems_model');
       $header_menu = $this->menuitems_model->header_sub_menu();
@@ -81,19 +82,32 @@ class MY_Controller extends CI_Controller {
       $template_path = $this->attachtemplatewidgets($page_slug,$page_items);
       return $template_path;
   }
+
+  protected function festivalspagewisecontent($page_slug){
+    $this->festivals_model->primary_key = array('page_slug' => $page_slug);
+    $this->data['page_items'] = $page_items = $this->festivals_model->get_row('festivals',$this->preview); 
+
+  $this->data['festival_banner'] = $page_items->festival_banner;
+
+  $this->data['sevas'] = $sevas = $this->festivals_model->get_sevas($page_items->festival_id);
+  $template_path = $page_items->template_path;
+
+  return $template_path;
+}
+
   protected function sevaspagewisecontent($page_slug){
       $this->seva_page_model->primary_key = array('page_slug' => $page_slug);
       $this->data['seva_page'] = $page_items = $this->seva_page_model->get_row('sevas_page',$this->preview); 
 
     $this->data['seva_page_banner'] = $page_items->seva_page_banner;
 
-    $this->data['sevas'] = $sevas = $this->seva_page_model->get_sevas($page_items->sevas_page_id);
+    $this->data['sevas'] = $sevas = $this->seva_page_model->get_sevas($page_items->festival_id);
 
     $template_path = $this->attachtemplatewidgets($page_slug,$page_items);
   //   $this->doctors_model->primary_key = array('doctors_id' => $page_items->doctors_id);
   //   $this->data['doctors'] = $this->doctors_model->view_rowdata('doctors');
    
-    $this->seva_page_model->primary_key = array('sevas_page_id' => $page_items->sevas_page_id);
+    $this->seva_page_model->primary_key = array('festival_id' => $page_items->festival_id);
     // $this->data['testimonials'] = $this->doctors_model->getdata('testimonials');
 
     return $template_path;

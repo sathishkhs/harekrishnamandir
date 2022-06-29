@@ -35,7 +35,7 @@ class Sevas extends MY_Controller
 
 		foreach ($sevas->result() as $row) {
 			$status = (!empty($row->status_ind) && ($row->status_ind == 1)) ? "<i class='fa fa-check-circle text-success'>Active</i> &nbsp;&nbsp;" : "<i class='nav-icon fa  fa-times-circle text-danger' >Inactive</i>";
-			 $this->sevas_model->primary_key = array('sevas_page_id'=>$row->sevas_page_id);
+			 $this->sevas_model->primary_key = array('festival_id'=>$row->festival_id);
             $festival_name = $this->sevas_model->get_row('sevas_page')->sevas_page_title;
 			$data[] = array(
                 $row->seva_name,
@@ -278,11 +278,11 @@ class Sevas extends MY_Controller
 		$data['scripts'] = array('assets/javascripts/sevas.js');
 		$this->load->view('templates/dashboard', $data);
     }
-    public function seva_page_edit($seva_page_id){
+    public function seva_page_edit($festival_id){
 		
 		// $data['seva_categories'] = $this->sevas_model->view_data('seva_category');
 		$data['forms'] = $this->sevas_model->view_data('forms');
-		$this->sevas_model->primary_key = array('sevas_page_id'=>$seva_page_id);
+		$this->sevas_model->primary_key = array('festival_id'=>$festival_id);
 		$seva_page = $this->sevas_model->get_row('sevas_page');
 		// $seva_page->seva_category_id = explode(',',$seva_page->seva_category_id);
         $data['query'] = $seva_page;
@@ -312,9 +312,9 @@ class Sevas extends MY_Controller
 				$status,
 				'
 				<td><div class="action-buttons">
-				<a class="" title="Edit" href="sevas/seva_page_edit/' . $row->sevas_page_id . '">
+				<a class="" title="Edit" href="sevas/seva_page_edit/' . $row->festival_id . '">
 				<button class="btn btn-primary btn-small btn-xs"><i class="fa fa-edit"></i></button></a>&nbsp;
-				<a class="red" title="Delete" href="sevas/seva_page_delete/' . $row->sevas_page_id . '"> 
+				<a class="red" title="Delete" href="sevas/seva_page_delete/' . $row->festival_id . '"> 
 				<button class="btn btn-danger btn-small btn-xs"><i class="fa fa-trash"></i></button></a>&nbsp;
 				</div></td>
 				'
@@ -337,7 +337,7 @@ class Sevas extends MY_Controller
 	public function sevas_page_save()
 	 {
 		 $this->sevas_model->create_seva_table($this->input->post('page_slug'));
-		 $sevas_page_id = $this->input->post('sevas_page_id');
+		 $festival_id = $this->input->post('festival_id');
 		 $this->sevas_model->data = $this->input->post();
 		// $this->sevas_model->data['seva_category_id'] = implode(',',$this->input->post('seva_category_id'));
  
@@ -358,10 +358,10 @@ class Sevas extends MY_Controller
 		 }
 		
 		 //Image Upload Code end here
-		 if (!empty($sevas_page_id)) {
+		 if (!empty($festival_id)) {
 			 $this->sevas_model->data['modified_date'] = date('Y-m-d h:i:s');
 			 $this->sevas_model->data['modified_by'] = $this->session->userdata('user_id');
-			 $this->sevas_model->primary_key = array('sevas_page_id' => $sevas_page_id);
+			 $this->sevas_model->primary_key = array('festival_id' => $festival_id);
 			 if ($this->sevas_model->update('sevas_page')) {
 				 $msg = array('type' => 'success', 'icon' => 'fa fa-check', 'txt' => 'Record Updated Successfully');
 				} else {
@@ -369,7 +369,7 @@ class Sevas extends MY_Controller
 				}
 			} else {
 			
-				unset($this->sevas_model->data['sevas_page_id']);
+				unset($this->sevas_model->data['festival_id']);
 				$this->sevas_model->data['created_date'] = date('Y-m-d');
 				$this->sevas_model->data['created_by'] = $this->session->userdata('user_id');
 				$this->sevas_model->data['modified_date'] = date('Y-m-d h:i:s');
@@ -393,10 +393,10 @@ class Sevas extends MY_Controller
 	 }
 
 
-	 public function seva_page_delete($sevas_page_id){
-		 $this->sevas_model->primary_key = array('sevas_page_id'=>$sevas_page_id);
+	 public function seva_page_delete($festival_id){
+		 $this->sevas_model->primary_key = array('festival_id'=>$festival_id);
 		 $this->sevas_model->delete('sevas');
-        $this->sevas_model->primary_key = array('sevas_page_id'=>$sevas_page_id);
+        $this->sevas_model->primary_key = array('festival_id'=>$festival_id);
         if($this->sevas_model->delete('sevas_page')){
             $msg = array('type' => 'success', 'icon' => 'lni lni-thumbs-up lni-lg mr-2', 'txt' => 'Data Deleted Successfully');
         }else{

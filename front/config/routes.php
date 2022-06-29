@@ -86,6 +86,19 @@ while($result_page = mysqli_fetch_assoc($charitable_programs)){
                 $route[$result_page['page_id']] = "charitable_programs/index/".$result_page['page_id'];
         }
 }
+
+
+$seva_pages =  mysqli_query($con, "SELECT page_slug from festivals where status_ind=1");
+while($result_page = mysqli_fetch_assoc($seva_pages)){
+// print_r($result_page);
+        if(!empty($result_page['page_slug'])){
+                $route[$result_page['page_slug']] = "festivals/index/".$result_page['page_slug'];
+        } else {
+                // $route[$result_page['page_id']] = "seva_page/index/".$result_page['page_id'];
+        }
+}
+
+
 $route['connect'] = "custom_page/index/connect";
 // $route['about-us'] = "custom_page/index/about-us";
 // $route['daily-worship-schedule'] = "custom_page/index/daily-worship-schedule";
@@ -110,6 +123,7 @@ $route['gaushala'] = "custom_page/index/gaushala";
 $route['image-gallery'] = "gallery";
 $route['offer-sevas'] = "custom_page/index/offer-sevas";
 $route['festivals'] = 'custom_page/index/festivals';
+$route['festivals_new'] = 'custom_page/index/festivals_new';
 
 $route['thankyou-r'] = "custom_page/index/thankyou-r";
 // $route['terms-condition'] = "custom_page/index/terms-condition";

@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Seva_Page_Model extends CI_Model {
+class Festivals_Model extends CI_Model {
 
     private $table;
     public $primary_key;
@@ -100,10 +100,10 @@ class Seva_Page_Model extends CI_Model {
         $q = $this->db->get($this->table);
         return $q->result();
     }
-   public function get_sevas($festival_id){
+   public function get_sevas($sevas_page_id){
       
        $this->db->select('*');
-        $this->db->where('festival_id',$festival_id);
+        $this->db->where('festival_id',$sevas_page_id);
        $sevas_page = $this->db->get('sevas')->result();
     
      return $sevas_page;

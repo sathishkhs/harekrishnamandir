@@ -105,7 +105,7 @@ class Seva_Page extends MY_Controller
         $payment_data = $this->seva_page_model->row_data($table_name);
         $this->seva_page_model->primary_key = array('page_slug' => $payment_data->festival);
         $festival_data = $this->seva_page_model->row_data('sevas_page');
-        $this->seva_page_model->primary_key = array('sevas_page_id' => $festival_data->sevas_page_id,'seva_name'=>$payment_data->seva_name);
+        $this->seva_page_model->primary_key = array('festival_id' => $festival_data->festival_id,'seva_name'=>$payment_data->seva_name);
         $seva_data = $this->seva_page_model->row_data('sevas');
       
         if (!empty($this->input->post('error'))) {

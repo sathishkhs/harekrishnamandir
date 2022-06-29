@@ -98,6 +98,11 @@ class Custom_page extends MY_Controller {
             $data['festivals'] =  $this->custom_page_model->getdata('sevas_page');
 
         }
+        if($slug == 'festivals_new'){
+            $this->custom_page_model->primary_key = array('status_ind'=>1);
+            $data['festivals'] =  $this->custom_page_model->getdata('festivals');
+
+        }
         $data['page_heading'] = $data['page_items']->page_title;
         $data['breadcrumb'] = '<span><a href="">Home</a> - </span><span><i class="fa fa-angle-right"></i></span><span class="active">'.$data['page_items']->page_title.'</span>' ;   
         $data['scripts'] = array('assets/javascripts/custom_page.js');
