@@ -73,11 +73,11 @@
 				<div class="col-sm-10 col-md-10 mx-auto">
 					<div class="inner-absolute-banner text-dark">
 						<div class="centralized-title text-center">
-							Thank you <?php echo $this->session->flashdata('name'); ?>
+							Thank you <?php echo $payment_data->full_name; ?>
 						</div>
 						<div class="centralized-content ">
-                        <p class="text-center ">We have received your kind contribution of <?php echo $this->session->flashdata('amount'); ?>. Your contribution will help to perform the sevas at 
-HARE KRISHNA MANDIR, AHMEDABAD.</p>
+                        <p class="text-center ">We have received your kind contribution of <?php echo $payment_data->amount; ?>. Your contribution will help to perform the sevas at 
+HARE KRISHNA MADIR, AHMEDABAD.</p>
 						</div>
 							<div class="centralized-title text-center">
 						<!-- Together, we can achieve a hunger-free Mumbai! -->
@@ -92,7 +92,7 @@ HARE KRISHNA MANDIR, AHMEDABAD.</p>
                 <li><a href="<?php echo $settings->FACEBOOK_LINK; ?>"><i class="fab fa-facebook-f text-dark" aria-hidden="true"></i></a></li>
         <li><a href="<?php echo $settings->INSTAGRAM_LINK; ?>"><i class="fab fa-instagram text-dark" aria-hidden="true"></i></a></li>
         <li><a href="<?php echo $settings->TWITTER_LINK; ?>"><i class="fab fa-twitter text-dark"></i></a></li>
-        <li><a href="<?php echo $settings->LINKEDIN_LINK; ?>"><i class="fab fa-linkedin-in text-dark" aria-hidden="true"></i></a></li>
+       
         <li><a href="<?php echo $settings->YOUTUBE_LINK; ?>"><i class="fab fa-youtube text-dark"></i></a></li>
                 </ul>
             </div>
@@ -101,28 +101,34 @@ HARE KRISHNA MANDIR, AHMEDABAD.</p>
 				</div>
 			</div>
 		
-			<div class="row">
+            <div class="row">
 				<div class="col-sm-10 mx-auto">
-					<h2 class="centralized-title">Your transaction details are as below: </h2>
+					<h2 class="centralized-title">Donation Details</h2>
 					<table>
 						<tbody>
-                        <tr>
-								<th >Name</th>
-								<td colspan="4"><?php echo $this->session->flashdata('name'); ?></td>
+							<tr>
+								<th >Name : </th>
+								<td colspan="4"><?php echo $payment_data->full_name; ?></td>
 							</tr>
 							<tr>
-								<th >Transaction Id</th>
-								<td colspan="4"><?php echo $this->session->flashdata('order_id'); ?></td>
-							</tr>
-							
-							<tr>
-								<th >Razorpay Payment No.</th>
-								<td colspan="4"><?php echo $this->session->flashdata('razorpay_payment_id'); ?></td>
+								<th >Order Id : </th>
+								<td colspan="4"><?php echo $payment_data->razorpay_order_id; ?></td>
 							</tr>
 							<tr>
-								<th >Amount</th>
-								<td colspan="4">&#8377; <?php echo $this->session->flashdata('amount'); ?></td>
-								<a style="text-align:center;color:#fff;" href="#"><?php echo $this->session->flashdata('amount'); ?></a>
+								<th >Reciept No. : </th>
+								<td colspan="4"><?php echo $payment_data->receipt; ?></td>
+							</tr>
+							<tr>
+								<th >Razorpay Payment No. : </th>
+								<td colspan="4"><?php echo $payment_data->razorpay_payment_id; ?></td>
+							</tr>
+							<tr>
+								<th >Amount : </th>
+								<td colspan="4">&#8377; <?php echo $payment_data->amount; ?></td>
+							</tr>
+							<tr>
+								<th >Payment Status : </th>
+								<td colspan="4"> <?php echo $payment_data->status; ?></td>
 							</tr>
 						</tbody>
 					</table>
@@ -140,15 +146,15 @@ dataLayer.push({
   'ecommerce': {
     'purchase': {
       'actionField': {
-        'id': '<?php echo $this->session->flashdata("order_id") ? $this->session->flashdata("order_id") : $order_id; ?>',                         // Transaction ID. Required for purchases and refunds.
-        'revenue': '<?php echo $this->session->flashdata("amount") ? $this->session->flashdata("amount") : $amount; ?>',                     // Total transaction value (incl. tax and shipping)
+        'id': '<?php echo $payment_data->razorpay_order_id; ?>',                         // Transaction ID. Required for purchases and refunds.
+        'revenue': '<?php echo $payment_data->amount; ?>',                     // Total transaction value (incl. tax and shipping)
  
       },
       'products': [{                            // List of productFieldObjects.
-        // 'name': '<?php echo $this->session->flashdata("name") ? $this->session->flashdata("name") : $name ; ?>',     // Name or ID is required.
-        'name': '<?php echo $this->session->flashdata("seva_name") ? $this->session->flashdata("seva_name") : $seva_name; ?>',     // Name or ID is required.
-        'id': '<?php echo $this->session->flashdata("order_id") ? $this->session->flashdata("order_id") : $order_id; ?>',
-        'price': '<?php echo $this->session->flashdata("amount") ? $this->session->flashdata("amount") : $amount; ?>',
+        // 'name': '<?php echo $seva_name ; ?>',     // Name or ID is required.
+        'name': '<?php echo $seva_name; ?>',     // Name or ID is required.
+        'id': '<?php echo $payment_data->razorpay_order_id; ?>',
+        'price': '<?php echo $payment_data->amount; ?>',
         'brand': 'xxx',
         'category': 'xxx',
         'variant': 'xxx',

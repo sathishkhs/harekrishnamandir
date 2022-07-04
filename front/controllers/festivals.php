@@ -95,7 +95,8 @@ class Festivals extends MY_Controller
         $this->festivals_model->primary_key = array('id' => $insert_id);
         $this->festivals_model->update($table_name);
         
-        $data['callback_url'] = "$this->class_name/success/$insert_id";
+        // $data['callback_url'] = "$this->class_name/success/$insert_id";
+        $data['callback_url'] = "seva_page/donation_success/$insert_id";
         header("Content-type:application/json");
         echo json_encode($data);
     }
@@ -127,7 +128,7 @@ class Festivals extends MY_Controller
         $data['slug'] = $data['payment_data']->festival;
       
         $data['javascripts'] = 'templates/includes/festivals/scripts';
-        $data['view_path'] = $this->class_name . '_new/donation_success';
+        $data['view_path'] = $this->class_name . '/donation_success';
         $data['scripts'] = array('javascripts/' . $this->class_name . '.js', 'javascripts/dashboard.js');
         $this->load->view('templates/festivals_page', $data);
     }

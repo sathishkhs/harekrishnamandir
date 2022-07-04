@@ -21,6 +21,71 @@ class Seva_Page extends MY_Controller
     }
 
 
+    public function donation_success($insert_id)
+    {
+        $data = $this->data;
+        $this->festivals_model->primary_key = array('page_slug'=>'success-donation');
+        $data['page_items'] = $this->festivals_model->row_data('pages');
+        $this->festivals_model->data['razorpay_payment_id'] = $razorpay_payment_id = $this->input->post('razorpay_payment_id');
+        $this->festivals_model->data['razorpay_signature'] = $razorpay_signature = $this->input->post('razorpay_signature');
+        $this->festivals_model->data['status'] = 'Success';
+        $this->festivals_model->primary_key = array('id'=>$insert_id);
+        if($this->config->item('payment_mode') == 'test'){
+            $this->festivals_model->update('test_payments');
+            $this->festivals_model->primary_key = array('id'=>$insert_id);
+            $data['payment_data'] = $this->festivals_model->row_data('test_payments');
+        }else{
+            $this->festivals_model->update('payments');
+            $this->festivals_model->primary_key = array('id'=>$insert_id);
+            $data['payment_data'] = $this->festivals_model->row_data('payments');
+        }
+        $api = new Api($this->config->item('keyId'), $this->config->item('keySecret'));
+        $rzp = $api->payment->fetch($data['payment_data']->razorpay_payment_id);
+        if($rzp->status != 'captured'){
+            $api = new Api($this->config->item('keyId'), $this->config->item('keySecret'));
+            $rzp = $api->payment->fetch($data['payment_data']->razorpay_payment_id)->capture(array('amount'=>$data['payment_data']->amount,'currency' => $data['payment_data']->currency));
+        }
+        
+        $data['seva_name'] = $data['payment_data']->seva_name;
+        $data['slug'] = $data['payment_data']->festival;
+      
+        $data['javascripts'] = 'templates/includes/festivals/scripts';
+        $data['view_path'] = $this->class_name . '/donation_success';
+        $data['scripts'] = array('javascripts/' . $this->class_name . '.js', 'javascripts/dashboard.js');
+        $this->load->view('templates/festivals_page', $data);
+    }
+    public function donation_failed($insert_id)
+    {
+        $data = $this->data;
+        $this->festivals_model->primary_key = array('page_slug'=>'failed-donation');
+        $data['page_items'] = $this->festivals_model->row_data('pages');
+
+        $this->festivals_model->data['error_code'] = $error_code = $this->input->post('error_code');
+        $this->festivals_model->data['error_description'] = $error_description = $this->input->post('error_description');
+        $this->festivals_model->data['error_source'] = $error_source = $this->input->post('error_source');
+        $this->festivals_model->data['error_reason'] = $error_reason = $this->input->post('error_reason');
+        $this->festivals_model->data['razorpay_payment_id'] = $razorpay_payment_id = $this->input->post('razorpay_payment_id');
+        $razorpay_order_id = $this->input->post('razorpay_order_id');
+        $this->festivals_model->data['status'] = $status = 'Failed';
+        $this->festivals_model->primary_key = array('id'=>$insert_id);
+        if($this->config->item('payment_mode') == 'test'){
+            $this->festivals_model->update('test_payments');
+            $this->festivals_model->primary_key = array('id'=>$insert_id);
+            $data['payment_data'] = $this->festivals_model->row_data('test_payments');
+        }else{
+            $this->festivals_model->update('payments');
+            $this->festivals_model->primary_key = array('id'=>$insert_id);
+            $data['payment_data'] = $this->festivals_model->row_data('payments');
+        }
+       
+        $data['slug'] = $data['payment_data']->festival;
+
+      
+        $data['javascripts'] = 'templates/includes/festivals/scripts';
+        $data['view_path'] = $this->class_name . '_new/donation_failed';
+        $data['scripts'] = array('javascripts/' . $this->class_name . '.js', 'javascripts/dashboard.js');
+        $this->load->view('templates/festivals_page', $data);
+    }
     public function index($slug)
     {
         if (!empty($this->input->post())) {
@@ -198,29 +263,29 @@ class Seva_Page extends MY_Controller
         }
     }
 
-    public function donation_success()
-    {
-        // if(empty($res) || empty($amount)){
-        //     redirect('donate');
-        // }
-        $data = $this->data;
-        $msg = array();
-        $data['view_path'] = $this->class_name . '/donation_success';
-         $data['name'] = urldecode($this->session->flashdata('name'));
-        $data['amount'] = $this->session->flashdata('amount');
-        $data['scripts'] = array('javascripts/' . $this->class_name . '.js', 'javascripts/dashboard.js');
-        $this->load->view('templates/seva_page', $data);
-    }
-    public function donation_failed()
-    {
-        $msg = array();
-        $data = $this->data;
-        $data['view_path'] = $this->class_name . '/donation_failed';
-          $data['name'] = urldecode($this->session->flashdata('name'));
+    // public function donation_success()
+    // {
+    //     // if(empty($res) || empty($amount)){
+    //     //     redirect('donate');
+    //     // }
+    //     $data = $this->data;
+    //     $msg = array();
+    //     $data['view_path'] = $this->class_name . '/donation_success';
+    //      $data['name'] = urldecode($this->session->flashdata('name'));
+    //     $data['amount'] = $this->session->flashdata('amount');
+    //     $data['scripts'] = array('javascripts/' . $this->class_name . '.js', 'javascripts/dashboard.js');
+    //     $this->load->view('templates/seva_page', $data);
+    // }
+    // public function donation_failed()
+    // {
+    //     $msg = array();
+    //     $data = $this->data;
+    //     $data['view_path'] = $this->class_name . '/donation_failed';
+    //       $data['name'] = urldecode($this->session->flashdata('name'));
        
-        $data['scripts'] = array('javascripts/' . $this->class_name . '.js', 'javascripts/dashboard.js');
-        $this->load->view('templates/seva_page', $data);
-    }
+    //     $data['scripts'] = array('javascripts/' . $this->class_name . '.js', 'javascripts/dashboard.js');
+    //     $this->load->view('templates/seva_page', $data);
+    // }
 
     public function sendmail($to_mail, $name, $amount, $receipt, $status)
     {
