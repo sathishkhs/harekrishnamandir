@@ -16,8 +16,8 @@
 	</div>
 	<div class="card shadow mb-4">
 
+    <h6 class="m-2 my-2 font-weight-bold text-primary "><?php echo $page_heading; ?> <?php if (!empty($sub_heading)) { ?><small><?php echo $sub_heading; ?></small><?php } ?></h6>
   <div class="card-header py-3 d-flex justify-content-between">
-    <h6 class="m-0 my-2 font-weight-bold text-primary "><?php echo $page_heading; ?> <?php if (!empty($sub_heading)) { ?><small><?php echo $sub_heading; ?></small><?php } ?></h6>
     
     <div >
       <form method="post" id="date-download" action="donations/download_donations" class="d-flex align-items-center "> 
@@ -25,9 +25,19 @@
       <label for="festival">Select Festival</label>
       <input type="hidden" name="festival_name" id="festival_name" value="">
       <select class="form-control  btn-secondary"  id="festival">
-          <option >Select Festival</option>
+          <option value="">Select Festival</option>
           <?php foreach($festivals as $festival){ ?>
             <option value="<?php echo $festival->page_slug; ?>"><?php echo $festival->sevas_page_title; ?></option>
+          <?php } ?>
+      </select>
+      </div>
+      <div class="form-group mr-5">
+      <label for="festival">Select Program</label>
+      <input type="hidden" name="program_name" id="program_name" value="">
+      <select class="form-control  btn-secondary"  id="program">
+          <option value="">Select Program</option>
+          <?php foreach($charitable_programs as $program){ ?>
+            <option value="<?php echo $program->page_slug; ?>"><?php echo $program->title; ?></option>
           <?php } ?>
       </select>
       </div>
@@ -53,12 +63,12 @@
             <th class="sorting_asc">Name</th>
             <th>Email</th>
             <th>Mobile</th>
-            <th>City</th>
             <th>Pan</th>
             <th>Amount</th>
             <th> Date </th>
             <th>Festival</th>
             <th>Seva Name</th>
+            <th>Address</th>
             <th>Status</th>
             <th>Razor Payment Id</th>
             <th>Reason</th>

@@ -49,7 +49,7 @@ class Festivals extends MY_Controller
 
         $data['keyId'] = $keyId = $this->config->item('keyId');
         $this->festivals_model->data['festival'] = $data['festival'] = $festival = $this->input->post('festival');
-        $this->festivals_model->data['seva_name'] = $data['seva_name'] = $seva_name = json_encode($this->input->post('seva_name'));
+        $this->festivals_model->data['seva_name'] = $data['seva_name'] = $seva_name = ($this->input->post('festival') == '-') ? $this->input->post('seva_name') : json_encode($this->input->post('seva_name'));
         $this->festivals_model->data['full_name'] = $data['full_name'] = $full_name = $this->input->post('full_name');
         $this->festivals_model->data['phone_number'] = $data['phone_number'] = $phone_number = $this->input->post('phone_number');
         $this->festivals_model->data['email'] = $data['email'] = $email = $this->input->post('email');

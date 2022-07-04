@@ -1,63 +1,3 @@
-var minDate;
-var MaxDate;
-function datadraw(){
-$.fn.dataTable.ext.search.push(
-    function( settings, data, dataIndex ) {
-        var min = minDate.val();
-        var max = maxDate.val();
-        var date =  data[6].split(' ')[0] ;
-        // console.log(data[7].split(' ')[0])
-        // console.log(date)
-        if (
-            ( min === null && max === null ) ||
-            ( min === null && date <= max ) ||
-            ( min <= date   && max === null ) ||
-            ( min <= date   && date <= max )
-        ) {
-            return true;
-        }
-        return false;
-    }
-);
-}
-
-function festivaldraw(){
-    $.fn.dataTable.ext.search.push(
-        function( settings, data, dataIndex ) {
-            var festival_value = festival_name.val();
-            var festival =  data[7] ;
-            
-        
-            // console.log(data[7])
-            // console.log(date)
-            if (
-               festival_value == festival
-            ) {
-                return true;
-            }
-            return false;
-        }
-    );
-    }
-function programdraw(){
-    
-    $.fn.dataTable.ext.search.push(
-        function( settings, data, dataIndex ) {
-            var program_value = program_name.val();
-            var program =  data[7] ;
-          
-        
-            // console.log(data[7])
-            // console.log(date)
-            if (
-               program_value == program
-            ) {
-                return true;
-            }
-            return false;
-        }
-    );
-    }
 
 
 $(document).ready(function(){
@@ -70,7 +10,10 @@ $(document).ready(function(){
     var donations = $('#donations_table').DataTable({ 
         'destroy':true,
         "searching": true,
-        "paging":false,
+        // "paging":false,
+        "pageLength": 10,
+        "lengthMenu": [10, 20, 40, 60, 80, 100],
+        scrollTop: true,
         "ajax": {
             url: "donations/donations_list/",
             
@@ -120,7 +63,72 @@ $(document).ready(function(){
         ],
     })
 
-
+    var minDate;
+    var MaxDate;
+    function datadraw(){
+    $.fn.dataTable.ext.search.push(
+        function( settings, data, dataIndex ) {
+            var min = minDate.val();
+            var max = maxDate.val();
+            var date =  data[5].split(' ')[0] ;
+            // console.log(data[7].split(' ')[0])
+            // console.log(date)
+            if (
+                ( min === null && max === null ) ||
+                ( min === null && date <= max ) ||
+                ( min <= date   && max === null ) ||
+                ( min <= date   && date <= max )
+            ) {
+                return true;
+            }
+            return false;
+        }
+    );
+    }
+    
+    function festivaldraw(){
+        var festival_value = festival_name.val();
+     
+        if(festival_value == ''){
+     
+            donations.draw()
+        }else{
+            $.fn.dataTable.ext.search.push(
+                function( settings, data, dataIndex ) {
+                    
+                    var festival =  data[6] ;
+            
+              
+                if (
+                   festival_value == festival 
+                ) {
+                    return true;
+                }
+                return false;
+            }
+            );
+        }
+        }
+    function programdraw(){
+        
+        $.fn.dataTable.ext.search.push(
+            function( settings, data, dataIndex ) {
+                var program_value = program_name.val();
+                var program =  data[7] ;
+         
+            
+                // console.log(data[7])
+                // console.log(date)
+                if (
+                   program_value == program && program_value !=''
+                ) {
+                    return true;
+                }
+                return false;
+            }
+        );
+        }
+    
 
     $('#from_date, #to_date').on('change', function () {
         datadraw();
@@ -135,9 +143,10 @@ $(document).ready(function(){
        
     })
     $('#program').on('change',function(){
-        $('#program_name').val(this.value);
-       programdraw();
-       charitable_donations.draw();
+       $('#program_name').val(this.value);
+
+        programdraw();
+       donations.draw();
     })
 
 });

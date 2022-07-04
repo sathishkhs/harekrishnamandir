@@ -21,6 +21,7 @@ class Donations extends MY_Controller
 
 	public function index(){
 		$data['festivals'] = $this->payments_model->view('sevas_page');
+		$data['charitable_programs'] = $this->payments_model->view('charitable_programs');
 		$data['view'] = 'donations/donations_list';
 		$data['title'] = 'Administrator Dashboard';
 		$data['page_heading'] = 'Donations List';
@@ -33,14 +34,16 @@ class Donations extends MY_Controller
 		$draw = intval($this->input->post("draw"));
 		$start = intval($this->input->post("start"));
 		$length = intval($this->input->post("length"));
-		$payments = $this->payments_model->get_pagination('donations');
+		$payments = $this->payments_model->get_pagination('payments');
 
 		$data = array();
 		foreach ($payments->result() as $row) {
 		if(!empty($row->status) ){
-		
-		    $status = '<span class="text-success">'.$row->status.'</span>';
-		
+			if($row->status == 'success'){
+		    $status = '<span class="text-success">Success</span>';
+			}else{
+			$status = 	'<span class="text-danger">Failed</span>';
+			}
 		}else{
 		    $status = '<span class="text-warning">Dropped</span>';
 		}
@@ -48,15 +51,15 @@ class Donations extends MY_Controller
 				$row->full_name,
 				$row->email,
 				$row->phone_number,
-				$row->city,
 				$row->pan_number,
 				$row->amount,
 				$row->payment_date,
 				$row->festival,
 				$row->seva_name,
+				$row->city,
 				$row->status,
 				$row->razorpay_payment_id,
-				$row->reason,
+				$row->error_reason,
 				
 
 			);
@@ -74,17 +77,17 @@ class Donations extends MY_Controller
 
 	public function download_donations(){
 		
- 
 		$rand = rand(100,999999);
 		$filename = 'donations_'.$rand.'.xls';
-		
-		$donations = $this->payments_model->view('donations');
+
+		$donations = $this->payments_model->get_donations('payments');
+	
 	
 		$spreadsheet = new Spreadsheet();
-		$table_columns = array("S.No","Receipt No", "Order Id", "Name", "Email", "Mobile Number",  "City", "Amount",  "Pan Number",  "Payment Date", "Razor Pay Order Id", "Razor Pay Payment Id", "Festival", "Seva Name", "Status", "Error Code", "Error Description", "Reason", "Entity", "Created Date");
+		$table_columns = array("S.No","Receipt No", "Order Id", "Name", "Email", "Mobile Number",  "City", "Address", "currency", "Amount",  "Pan Number",  "Payment Date", "Razor Pay Order Id", "Razor Pay Payment Id", "Donation Type", "Festival", "Seva Name", "Status", "Tally head", "Seva code", "Error Code", "Error Description", "Reason", "Entity", "Created Date");
 		$sheet = $spreadsheet->getActiveSheet()
-								->fromArray(
-									$table_columns,   // The data to set
+		->fromArray(
+			$table_columns,   // The data to set
 									NULL,        // Array values with this value will not be set
 									'A1'         // Top left coordinate of the worksheet range where
 												//    we want to set these values (default is A1)
@@ -98,19 +101,24 @@ class Donations extends MY_Controller
 			$sheet->setCellValue('E'.$key, $row->email);
 			$sheet->setCellValue('F'.$key, $row->phone_number);
 			$sheet->setCellValue('G'.$key, $row->city);
-			$sheet->setCellValue('H'.$key, $row->amount);
-			$sheet->setCellValue('I'.$key, $row->pan_number);
-			$sheet->setCellValue('J'.$key, $row->payment_date);
-			$sheet->setCellValue('K'.$key, $row->razorpay_order_id);
-			$sheet->setCellValue('L'.$key, $row->razorpay_payment_id);
-			$sheet->setCellValue('M'.$key, $row->festival);
-			$sheet->setCellValue('N'.$key, $row->seva_name);
-			$sheet->setCellValue('O'.$key, $row->status);
-			$sheet->setCellValue('P'.$key, $row->error_code);
-			$sheet->setCellValue('Q'.$key, $row->error_description);
-			$sheet->setCellValue('R'.$key, $row->reason);
-			$sheet->setCellValue('S'.$key, $row->entity);
-			$sheet->setCellValue('T'.$key, $row->created_at);
+			$sheet->setCellValue('H'.$key, $row->address);
+			$sheet->setCellValue('I'.$key, $row->currency);
+			$sheet->setCellValue('J'.$key, $row->amount);
+			$sheet->setCellValue('K'.$key, $row->pan_number);
+			$sheet->setCellValue('L'.$key, $row->payment_date);
+			$sheet->setCellValue('M'.$key, $row->razorpay_order_id);
+			$sheet->setCellValue('N'.$key, $row->razorpay_payment_id);
+			$sheet->setCellValue('O'.$key, $row->donation_type);
+			$sheet->setCellValue('P'.$key, $row->festival);
+			$sheet->setCellValue('Q'.$key, $row->seva_name);
+			$sheet->setCellValue('R'.$key, $row->status);
+			$sheet->setCellValue('S'.$key, $row->tally_head);
+			$sheet->setCellValue('T'.$key, $row->seva_code);
+			$sheet->setCellValue('U'.$key, $row->error_code);
+			$sheet->setCellValue('V'.$key, $row->error_description);
+			$sheet->setCellValue('W'.$key, $row->error_reason);
+			$sheet->setCellValue('X'.$key, $row->entity);
+			$sheet->setCellValue('Y'.$key, $row->created_at);
 			
 			$key++;
 		}
