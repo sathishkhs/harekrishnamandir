@@ -100,16 +100,16 @@ class Payments_model extends CI_Model
     public function get_donations($table_name){
         $this->db->select('*');
         if(!empty($_POST['from_date']) && !empty($_POST['to_date'])){
-        $this->db->where('payment_date <=',$this->input->post('from_date'));
-        $this->db->where('payment_date >=',$this->input->post('to_date'));
+            $this->db->where("payment_date BETWEEN '".$this->input->post('from_date')."' AND ",$this->input->post('to_date'));
         }
         if(!empty($_POST['festival_name'])){
-        $this->db->like('festival',$this->input->post('festival_name'));
+            $this->db->like('festival',$this->input->post('festival_name'));
         }
         if(!empty($_POST['program_name'])){
-        $this->db->like('seva_name',$this->input->post('program_name'));
+            $this->db->like('seva_name',$this->input->post('program_name'));
         }
         $q = $this->db->get($table_name);
+        print_r($this->db->last_query());exit;
         return $q->result();
     }
 }
