@@ -20,7 +20,8 @@
               <div class="container">
               <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12">
-                  <h3 class="mt-0 line-bottom">Offer Seva<span class="font-weight-300"> Now!</span></h3>
+                  
+                  <h5 class="mt-0 line-bottom"><?php echo $page_items->form_heading; ?></h5>
 
                   <!-- ===== START: Paypal Both Onetime/Recurring Form ===== -->
                   <form id="popup_paypal_donate_form_onetime_recurring" action=""  method="POST" enctype="multipart/form-data">

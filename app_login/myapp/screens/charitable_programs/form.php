@@ -94,6 +94,12 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <label class="col-sm-3 col-md-3 control-label" for="form-field-4">Enter Form Heading</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="form_heading" id="form_heading" class="form-control" placeholder="Enter Form Heading " value="<?php echo (!empty($query->form_heading)) ? $query->form_heading : '' ?>">
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label class="col-sm-3 col-md-3 control-label" for="form-field-4">Enter Amount of Field 1</label>
                                     <div class="col-sm-10">
                                         <input type="text" name="amount_1" id="amount_1" class="form-control" placeholder="Enter Amount of Field 1 " value="<?php echo (!empty($query->amount_1)) ? $query->amount_1 : '' ?>">
