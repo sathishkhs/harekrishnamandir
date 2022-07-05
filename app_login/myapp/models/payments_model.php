@@ -109,7 +109,6 @@ class Payments_model extends CI_Model
             $this->db->like('seva_name',$this->input->post('program_name'));
         }
         $q = $this->db->get($table_name);
-        print_r($this->db->last_query());exit;
         return $q->result();
     }
 }
