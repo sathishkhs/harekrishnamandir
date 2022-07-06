@@ -57,6 +57,9 @@
   .eventholder a:hover {
     color: #fff !important;
   }
+  .btn{
+    white-space: normal;
+  }
 </style>
 <!-- Section: Project -->
 <section data-tm-bg-color="#f5f5f4">
@@ -561,7 +564,7 @@
         <div class="col-lg-11 col-xl-9 col-xxl-8 m-auto">
           <div class="bg-theme-colored2 icon-current-style1 d-inline-block mb-30"><img src="assets/images/icons/Annadana.png" alt="Icon-Image"></div>
           <h2 class=" font-weight-500  mt-0 mb-40 pb-1" style="background:#fff">Annadanam Mahadanam</h2>
-          <a href="annadana-seva" class="btn btn-theme-colored2 btn-outline btn-lg btn-round font-size-14 font-weight-500 text-uppercase letter-spacing-1 pt-20 pb-20">Support Us in Feeding Needy and Temple Visitors.</a>
+          <a href="annadana-seva" class="btn btn-theme-colored2 btn-outline btn-lg btn-round font-size-14 font-weight-500 text-uppercase letter-spacing-1 pt-20 pb-20 px-1">Support Us in Feeding Needy and Temple Visitors.</a>
         </div>
       </div>
     </div>
