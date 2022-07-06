@@ -124,13 +124,13 @@
 
                     <div class="col-sm-5 mx-auto">
                       <div class="form-group">
-                        <button type="submit" class="btn btn-flat btn-dark btn-theme-colored mt-10 pl-30 pr-30" data-loading-text="Please wait...">Donate Now</button>
+                        <button type="submit" class="btn btn-flat btn-dark btn-theme-colored2 mt-10 pl-30 pr-30" data-loading-text="Please wait...">Donate Now</button>
                       </div>
                     </div>
-                    <div class="col-sm-7 mx-auto">
+                    <small class="col-sm-7 mx-auto">
                             
                             Avail tax exemption under Section 80G
-                        </div>
+                        </small>
                   </form>
 
 
