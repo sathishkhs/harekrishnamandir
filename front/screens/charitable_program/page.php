@@ -127,10 +127,9 @@
                         <button type="submit" class="btn btn-flat btn-dark btn-theme-colored2 mt-10 pl-30 pr-30" data-loading-text="Please wait...">Donate Now</button>
                       </div>
                     </div>
-                    <small class="col-sm-7 mx-auto">
-                            
-                            Avail tax exemption under Section 80G
-                        </small>
+                    <div class="col-sm-7 mx-auto text-center">
+                           <small> Avail tax exemption under Section 80G</small>
+                        </div>
                   </form>
 
 
