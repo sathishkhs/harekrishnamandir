@@ -17,11 +17,11 @@
         <div class="modal-body">
           <section>
             <div class="section-content">
-              <div class="container">
+              <div class="container pt-1">
               <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12">
                   
-                  <h5 class="mt-0 line-bottom"><?php echo $page_items->form_heading; ?></h5>
+                  <h6 class="mt-0 line-bottom"><?php echo $page_items->form_heading; ?></h6>
 
                   <!-- ===== START: Paypal Both Onetime/Recurring Form ===== -->
                   <form id="popup_paypal_donate_form_onetime_recurring" action=""  method="POST" enctype="multipart/form-data">
