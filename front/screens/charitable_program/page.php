@@ -38,7 +38,7 @@
                         
                     <div class="row">
                        
-                        <div class="form-group d-flex flex-wrap form-control p-20 border-0 mb-2">
+                        <div class="form-group d-flex flex-wrap form-control p-0 border-0 mb-2">
                                             <div class="form-check d-flex mt-2">
                                                 <input class="form-check-input ml-10" type="radio" checked id="one" name="radioamount" value="<?php echo $page_items->amount_1;?>" >
                                                 <label class="form-check-label pl-10" for="one"> ₹<?php echo $page_items->amount_1;?></label> &nbsp;
