@@ -265,26 +265,26 @@
             $('#two').on('click', function() {
                 // $('#one, #two, #three, #five, #seven, #thousand, #fifteen, #twenty,#other').removeAttr('ckecked');
                 $('#two').prop('checked','checked');
-                $('#amount').val('2000');
+                $('#amount').val($(this).val());
 
             })
             $('#three').on('click', function() {
                 // $('#one, #two, #three, #five, #seven, #thousand, #fifteen, #twenty,#other').removeAttr('checked');
                 $('#three').prop('checked','checked');
-                $('#amount').val('5000');
+                $('#amount').val($(this).val());
 
             })
             $('#five').on('click', function() {
                 // $('#one, #two, #three, #five, #seven, #thousand, #fifteen, #twenty,#other').removeAttr('checked');
                 $('#five').prop('checked','checked');
-                $('#amount').val('10000');
+                $('#amount').val($(this).val());
 
             })
 
             $('#seven').on('click', function() {
                 // $('#one, #two, #three, #five, #seven, #thousand, #fifteen, #twenty,#other').removeAttr('checked');
                 $('#seven').prop('checked','checked');
-                $('#amount').val('15000');
+                $('#amount').val($(this).val());
 
             })
 
