@@ -73,7 +73,7 @@
 
                     <div class="row">
                       <div class="form-group col-md-12">
-                        <label>Custom Amount</label>
+                        <label id="custom-text">Selected Amount</label>
                         <input id="amount" type="text" name="amount" value="" class="form-control" onkeypress="checkother()">
                       </div>
                     </div>
@@ -256,43 +256,45 @@
          
             $('#one').on('click', function() {
                 // $('#one, #two, #three, #five, #seven, #thousand, #fifteen, #twenty ').removeAttr('checked');
+                $('#custom-text').html('Selected Amount');
                 $('#one').prop('checked','checked');
                 $('#amount').val('1000');
-              
               
 
             })
             $('#two').on('click', function() {
                 // $('#one, #two, #three, #five, #seven, #thousand, #fifteen, #twenty,#other').removeAttr('ckecked');
+                $('#custom-text').html('Selected Amount');
                 $('#two').prop('checked','checked');
                 $('#amount').val($(this).val());
-
             })
             $('#three').on('click', function() {
                 // $('#one, #two, #three, #five, #seven, #thousand, #fifteen, #twenty,#other').removeAttr('checked');
+                $('#custom-text').html('Selected Amount');
                 $('#three').prop('checked','checked');
                 $('#amount').val($(this).val());
-
             })
             $('#five').on('click', function() {
                 // $('#one, #two, #three, #five, #seven, #thousand, #fifteen, #twenty,#other').removeAttr('checked');
+                $('#custom-text').html('Selected Amount');
                 $('#five').prop('checked','checked');
                 $('#amount').val($(this).val());
-
             })
 
             $('#seven').on('click', function() {
                 // $('#one, #two, #three, #five, #seven, #thousand, #fifteen, #twenty,#other').removeAttr('checked');
+                $('#custom-text').html('Selected Amount');
                 $('#seven').prop('checked','checked');
                 $('#amount').val($(this).val());
-
             })
 
             $('#other').on('click', function() {
                 // var amount = $('#other').val()
                 // $('#one, #two, #three, #five, #seven, #thousand, #fifteen, #twenty,#other').removeAttr('checked');
+                $('#custom-text').html('Enter Custom Amount');
                 $('#other').prop('checked','checked');
-                // $('#amount').val(amount);
+                $('#amount').val('');
+
 
             })
             $('#amount').on('keydown',function(){
