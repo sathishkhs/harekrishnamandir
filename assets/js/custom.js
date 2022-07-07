@@ -1523,23 +1523,23 @@ var THEMEMASCOT = {};
     /* ---------------------------------------------------------------------------- */
     /* ------------------------------- scroll to fixed ---------------------------- */
     /* ---------------------------------------------------------------------------- */
-    TM_scrollToFixed: function() {
-      $('.navbar-scrolltofixed').scrollToFixed();
-      $('.scrolltofixed').scrollToFixed({
-        marginTop: $header.find('.header-nav').outerHeight(true) + 10,
-        limit: function() {
-          var limit = $('#footer').offset().top - $(this).outerHeight(true);
-          return limit;
-        }
-      });
-      $('.sidebar-scrolltofixed').scrollToFixed({
-        marginTop: $header.find('.header-nav').outerHeight() + 20,
-        limit: function() {
-          var limit = $('#footer').offset().top - $('#sidebar').outerHeight() - 20;
-          return limit;
-        }
-      });
-    },
+    // TM_scrollToFixed: function() {
+    //   $('.navbar-scrolltofixed').scrollToFixed();
+    //   $('.scrolltofixed').scrollToFixed({
+    //     marginTop: $header.find('.header-nav').outerHeight(true) + 10,
+    //     limit: function() {
+    //       var limit = $('#footer').offset().top - $(this).outerHeight(true);
+    //       return limit;
+    //     }
+    //   });
+    //   $('.sidebar-scrolltofixed').scrollToFixed({
+    //     marginTop: $header.find('.header-nav').outerHeight() + 20,
+    //     limit: function() {
+    //       var limit = $('#footer').offset().top - $('#sidebar').outerHeight() - 20;
+    //       return limit;
+    //     }
+    //   });
+    // },
 
     /* ---------------------------------------------------------------------------- */
     /* ------------------------------- Vertical Nav ------------------------------- */
