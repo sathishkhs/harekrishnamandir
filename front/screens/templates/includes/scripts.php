@@ -12,6 +12,7 @@ lazyload(images);
 $('input').focus((e) => {
     alert('focus')
   e.preventDefault();
+  e.preventScroll();
   e.target.focus({preventScroll: true});
 })
 
