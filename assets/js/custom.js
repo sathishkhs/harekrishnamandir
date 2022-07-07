@@ -346,14 +346,18 @@ var THEMEMASCOT = {};
           var $navbar_height = $navbar_scrolltofixed.height();
           $window.on( 'scroll', function() {
             var currentScrollPos = $window.scrollTop();
+         
             if (prevScrollpos > currentScrollPos) {
-              $navbar_scrolltofixed.css('top', 0);
+              if(getDifference(prevScrollPos, currentScrollPos) > 80){
+
+                $navbar_scrolltofixed.css('top', 0);
+              }
             } else {
               if( $document.scrollTop() > $header_height + 200 ) {
                 $navbar_scrolltofixed.css('top', '-' + $navbar_height + 'px');
               }
             }
-            prevScrollpos = currentScrollPos;
+            // prevScrollpos = currentScrollPos;
           });
         }
       }
