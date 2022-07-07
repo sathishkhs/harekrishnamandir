@@ -9,6 +9,9 @@ let images = document.querySelectorAll(".lazyload");
 lazyload(images);
 
 
-
+$('input').focus((e) => {
+  e.preventDefault();
+  e.target.focus({preventScroll: true});
+})
 
 </script>
