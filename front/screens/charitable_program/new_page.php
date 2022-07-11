@@ -40,18 +40,18 @@
 
                           <div class="form-group col-md-12 d-flex flex-wrap flex-column form-control p-0 border-0 mb-2">
                             <div class="form-check d-flex mt-2">
-                              <input class="form-check-input ml-10" type="radio" checked id="one" name="radioamount" data-seva="makhan-mishri-seva" value="1000">
-                              <label class="form-check-label pl-10" for="one"> ₹ 1000 - Makhan Mishri Seva </label> &nbsp;
+                              <input class="form-check-input ml-10" type="radio" checked id="one" name="radioamount" data-seva="makhan-mishri-seva" value="2000">
+                              <label class="form-check-label pl-10" for="one"> ₹ 2000 - Makhan Mishri Seva </label> &nbsp;
                             </div>
                             <br>
                             <div class="form-check d-flex mt-2">
-                              <input class="form-check-input ml-10" type="radio" id="two" name="radioamount" data-seva="jhulan-seva" value="2000">
-                              <label class="form-check-label pl-10" for="two"> ₹ 2000 - Jhulan Seva </label> &nbsp;
+                              <input class="form-check-input ml-10" type="radio" id="two" name="radioamount" data-seva="jhulan-seva" value="1400">
+                              <label class="form-check-label pl-10" for="two"> ₹ 1400 - Jhulan Seva </label> &nbsp;
                             </div>
                             <br>
                             <div class="form-check d-flex mt-2">
-                              <input class="form-check-input ml-10" type="radio" id="three" name="radioamount" data-seva="pushpanjali-seva" value="3000">
-                              <label class="form-check-label pl-10" for="three">₹ 3000 - Pushpanjali Seva</label> &nbsp;
+                              <input class="form-check-input ml-10" type="radio" id="three" name="radioamount" data-seva="pushpanjali-seva" value="5000">
+                              <label class="form-check-label pl-10" for="three">₹ 5000 - Pushpanjali Seva</label> &nbsp;
                             </div>
                             <br>
                             <div class="form-check d-flex mt-2">
@@ -61,8 +61,8 @@
                             <br>
 
                             <div class="form-check d-flex mt-2">
-                              <input class="form-check-input ml-10" type="radio" id="seven" name="radioamount" data-seva="maha-abhishekam-seva" value="5000">
-                              <label class="form-check-label pl-10" for="seven">₹ 5000 - Maha Abhishekam Seva </label> &nbsp;
+                              <input class="form-check-input ml-10" type="radio" id="seven" name="radioamount" data-seva="maha-abhishekam-seva" value="2500">
+                              <label class="form-check-label pl-10" for="seven">₹ 2500 - Maha Abhishekam Seva </label> &nbsp;
                             </div>
                             <br>
                             <div class="form-check d-flex mt-2">
@@ -71,12 +71,12 @@
                             </div>
                             <br>
                             <div class="form-check d-flex mt-2">
-                              <input class="form-check-input ml-10" type="radio" id="seven" name="radioamount" data-seva="phool-bangla-seva" value="7000">
-                              <label class="form-check-label pl-10" for="seven">₹ 7000 - Phool Bangla Seva </label> &nbsp;
+                              <input class="form-check-input ml-10" type="radio" id="seven" name="radioamount" data-seva="phool-bangla-seva" value="1100">
+                              <label class="form-check-label pl-10" for="seven">₹ 1100 - Phool Bangla Seva </label> &nbsp;
                             </div>
                             <div class="form-check d-flex mt-2">
-                              <input class="form-check-input ml-10" type="radio" id="seven" name="radioamount" data-seva="gau-seva" value="8000">
-                              <label class="form-check-label pl-10" for="seven">₹ 8000 - Gau Seva </label> &nbsp;
+                              <input class="form-check-input ml-10" type="radio" id="seven" name="radioamount" data-seva="gau-seva" value="3000">
+                              <label class="form-check-label pl-10" for="seven">₹ 3000 - Gau Seva </label> &nbsp;
                             </div>
 
                             <div class="form-check d-flex mt-2">
