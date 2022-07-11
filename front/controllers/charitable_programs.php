@@ -99,6 +99,22 @@ class Charitable_Programs extends MY_Controller
     
     }
 
+
+    public function custom($slug) {
+       
+   
+
+
+        $template_path = $this->programpagewisecontent($slug);
+        $data = $this->data;
+        $data['view_path'] = "charitable_program/new_page";  
+        $data['page_heading'] = $data['page_items']->title;
+        $data['breadcrumb'] = '<span><a href="">Home</a> - </span><span><i class="fa fa-angle-right"></i></span><span class="active">'.$data['page_items']->title.'</span>' ;   
+        $data['scripts'] = array('assets/javascripts/custom_page.js');
+        $this->load->view($template_path, $data);
+    
+    }
+
     public function connect_save(){
         $this->custom_page_model->data = $this->input->post();
         $this->custom_page_model->data['service_slot'] = implode(',',$this->input->post('service_slot'));
