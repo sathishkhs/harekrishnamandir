@@ -136,4 +136,4 @@ $route['support-our-hospital-feeding-programme'] = "custom_page/index/support-ou
 // $route['annadana-seva'] = "custom_page/index/annadana-seva";
 // $route['narasimha-jayanti'] = "custom_page/index/narasimha-jayanti";
 
-$route['krishnastami'] = "charitable_programs/custom/krishnastami";
+$route['krishnashtami'] = "charitable_programs/custom/krishnashtami";
