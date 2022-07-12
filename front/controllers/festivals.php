@@ -112,11 +112,11 @@ class Festivals extends MY_Controller
         if($this->config->item('payment_mode') == 'test'){
             $this->festivals_model->update('test_payments');
             $this->festivals_model->primary_key = array('id'=>$insert_id);
-            $data['payment_data'] = $this->festivals_model->row_data('test_payments');
+            $data['payment_data'] =$payment_data =  $this->festivals_model->row_data('test_payments');
         }else{
             $this->festivals_model->update('payments');
             $this->festivals_model->primary_key = array('id'=>$insert_id);
-            $data['payment_data'] = $this->festivals_model->row_data('payments');
+            $data['payment_data'] =$payment_data =  $this->festivals_model->row_data('payments');
         }
         $api = new Api($this->config->item('keyId'), $this->config->item('keySecret'));
         $rzp = $api->payment->fetch($data['payment_data']->razorpay_payment_id);
@@ -124,7 +124,69 @@ class Festivals extends MY_Controller
             $api = new Api($this->config->item('keyId'), $this->config->item('keySecret'));
             $rzp = $api->payment->fetch($data['payment_data']->razorpay_payment_id)->capture(array('amount'=>$data['payment_data']->amount,'currency' => $data['payment_data']->currency));
         }
-      
+        if($this->config->item('payment_mode') == 'test'){}else{
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+          CURLOPT_URL => 'https://hkm-tapf.azurewebsites.net/api/login',
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_ENCODING => '',
+          CURLOPT_MAXREDIRS => 10,
+          CURLOPT_TIMEOUT => 0,
+          CURLOPT_FOLLOWLOCATION => true,
+          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+          CURLOPT_CUSTOMREQUEST => 'POST',
+          CURLOPT_POSTFIELDS =>'{
+            "email":"websiteuser@harekrishnamandir.org",
+            "password":"Websiteuser@786"
+        }',
+          CURLOPT_HTTPHEADER => array(
+            'Accept: application/json',
+            'Authorization: ',
+            'Content-Type: application/json'
+          ),
+        ));
+        
+        $response = curl_exec($curl);
+        
+        curl_close($curl);
+        $token = json_decode($response)->token;
+        
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://hkm-tapf.azurewebsites.net/api/web/online-donation',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'POST',
+        CURLOPT_POSTFIELDS => array(
+            'name' => "$payment_data->name",
+            'email' => "$payment_data->email",
+            'phone_number' => "$payment_data->phone_number",
+            'address' => "$payment_data->city",
+            'amount' => "$payment_data->amount",
+            'seva_id' => $payment_data->id,
+            'transaction_number' => "$payment_data->razorpay_payment_id",
+            'order_id' => "$payment_data->razorpay_order_id",
+            'payment_staus' => "$payment_data->status",
+            'tally_head' => "$payment_data->tally_head",
+            'seva_name' => "$payment_data->seva_name",
+            'seva_code' => "$payment_data->seva_code"
+        ),
+        CURLOPT_HTTPHEADER => array(
+            "Authorization: Bearer $token"
+        ),
+        ));
+
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+    }
         $data['slug'] = $data['payment_data']->festival;
       
         $data['javascripts'] = 'templates/includes/festivals/scripts';
