@@ -9,7 +9,7 @@
           <?php echo $page_items->left_description; ?>
         </div>
 
-<div class="col-md-12 col-lg-6 bg-light order-first order-md-2">
+<div class="col-md-12 col-lg-6 bg-light order-first  order-lg-2">
 
 
 <div class="container pt-0">
