@@ -72,6 +72,7 @@
             <th>Status</th>
             <th>Razor Payment Id</th>
             <th>Reason</th>
+            <th>API Reciept Generated</th>
            
           </tr>
 

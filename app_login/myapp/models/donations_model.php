@@ -48,7 +48,7 @@ Class Donations_Model extends CI_Model {
     }
 
     public function pagination($table_name){
-      return  $this->db->select('*')->get($table_name);
+      return  $this->db->select('*')->order_by('payment_date','desc')->get($table_name);
     }
 
     public function update($table_name){

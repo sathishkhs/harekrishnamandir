@@ -13,6 +13,7 @@ $(document).ready(function(){
         // "paging":false,
         "pageLength": 10,
         "lengthMenu": [10, 20, 40, 60, 80, 100],
+        order: [[5, 'desc']],
         scrollTop: true,
         "ajax": {
             url: "donations/donations_list/",

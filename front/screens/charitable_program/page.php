@@ -32,6 +32,8 @@
                         <?php } ?>
                         <input type="hidden" name="donation_type" value="charitable_programme">
                         <input name="seva_name" type="hidden" value="<?php echo $page_items->page_slug; ?>">
+                        <input name="tally_head" type="hidden" value="<?php echo $page_items->tally_head; ?>">
+                        <input name="seva_code" type="hidden" value="<?php echo $page_items->seva_code; ?>">
                         <input type="hidden" name="slug" value="<?php echo $page_items->page_slug; ?>">
                         <input type="hidden" name="festival" value="-">
                         <input type="hidden" name="currency" value="INR">

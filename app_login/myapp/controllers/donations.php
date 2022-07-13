@@ -60,6 +60,7 @@ class Donations extends MY_Controller
 				$row->status,
 				$row->razorpay_payment_id,
 				$row->error_reason,
+				$row->api_reciept_gen
 				
 
 			);
@@ -84,7 +85,7 @@ class Donations extends MY_Controller
 	
 	
 		$spreadsheet = new Spreadsheet();
-		$table_columns = array("S.No","Receipt No", "Order Id", "Name", "Email", "Mobile Number",  "City", "Address", "currency", "Amount",  "Pan Number",  "Payment Date", "Razor Pay Order Id", "Razor Pay Payment Id", "Donation Type", "Festival", "Seva Name", "Status", "Tally head", "Seva code", "Error Code", "Error Description", "Reason", "Entity", "Created Date");
+		$table_columns = array("S.No","Receipt No", "Order Id", "Name", "Email", "Mobile Number",  "City", "Address", "currency", "Amount",  "Pan Number",  "Payment Date", "Razor Pay Order Id", "Razor Pay Payment Id", "Donation Type", "Festival", "Seva Name", "Status", "Tally head", "Seva code", "Error Code", "Error Description", "Reason", "Entity", "Created Date","Api Reciept Generated");
 		$sheet = $spreadsheet->getActiveSheet()
 		->fromArray(
 			$table_columns,   // The data to set
@@ -119,6 +120,7 @@ class Donations extends MY_Controller
 			$sheet->setCellValue('W'.$key, $row->error_reason);
 			$sheet->setCellValue('X'.$key, $row->entity);
 			$sheet->setCellValue('Y'.$key, $row->created_at);
+			$sheet->setCellValue('Z'.$key, $row->api_reciept_gen);
 			
 			$key++;
 		}

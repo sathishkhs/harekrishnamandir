@@ -33,10 +33,11 @@ class Festivals_Model extends CI_Model {
      $this->reset_data();
      return $this->db->insert_id();   
     }
-
+    
     public function update($table){
         $this->db->where($this->primary_key);
         $this->db->update($table,$this->data);
+        $this->reset();
         return true;
     }
     public function get_donation_page() {

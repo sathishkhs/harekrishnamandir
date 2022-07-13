@@ -93,6 +93,7 @@ class Payments_model extends CI_Model
     public function get_pagination($table)
     {
         $this->db->select('*');
+        $this->db->order_by('payment_date','desc');
         $q = $this->db->get($table);
         return $q;
     }
