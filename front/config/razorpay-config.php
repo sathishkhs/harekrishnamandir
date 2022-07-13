@@ -5,7 +5,7 @@ $config['description'] = 'Harekrishna Mandir';
 $config['image'] = 'image/path';
 
 
-    $config['payment_mode'] = 'live';
+    $config['payment_mode'] = 'test';
 
 if($config['payment_mode'] == 'test'){
     //Test Server 
