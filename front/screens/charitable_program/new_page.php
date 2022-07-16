@@ -1,5 +1,11 @@
 <style>
+.form-control{
+    height:auto
+}
 
+form label{
+  font-size: 14px;
+}
 </style>
 
 
@@ -9,7 +15,7 @@
       <?php echo $page_items->left_description; ?>
     </div>
 
-    <div class="col-md-12 col-lg-6 bg-light order-first order-lg-2">
+    <div class="col-md-12 col-lg-6 bg-light order-first order-lg-2 p-0">
 
 
       <div class="container pt-0">
@@ -38,48 +44,48 @@
 
                         <div class="row">
 
-                          <div class="form-group col-md-12 d-flex flex-wrap flex-column form-control p-0 border-0 mb-2">
-                            <div class="form-check d-flex mt-2">
+                          <div class="form-group col-md-12 d-flex   p-0 border-0 mb-2 row">
+                            <div class="form-check  col-md-6 mt-2">
                               <input class="form-check-input ml-10" type="radio" checked id="one" name="radioamount" data-seva="makhan-mishri-seva" value="2000">
                               <label class="form-check-label pl-10" for="one"> ₹ 2000 - Makhan Mishri Seva </label> &nbsp;
                             </div>
-                            <br>
-                            <div class="form-check d-flex mt-2">
+                          
+                            <div class="form-check col-md-6 mt-2">
                               <input class="form-check-input ml-10" type="radio" id="two" name="radioamount" data-seva="jhulan-seva" value="1400">
                               <label class="form-check-label pl-10" for="two"> ₹ 1400 - Jhulan Seva </label> &nbsp;
                             </div>
-                            <br>
-                            <div class="form-check d-flex mt-2">
+                         
+                            <div class="form-check  col-md-6 mt-2">
                               <input class="form-check-input ml-10" type="radio" id="three" name="radioamount" data-seva="pushpanjali-seva" value="5000">
                               <label class="form-check-label pl-10" for="three">₹ 5000 - Pushpanjali Seva</label> &nbsp;
                             </div>
-                            <br>
-                            <div class="form-check d-flex mt-2">
+                          
+                            <div class="form-check  col-md-6 mt-2">
                               <input class="form-check-input ml-10" type="radio" id="five" name="radioamount" data-seva="chappan-bhog-seva" value="4000">
                               <label class="form-check-label pl-10" for="five">₹ 4000 - Chappan Bhog Seva</label> &nbsp;
                             </div>
-                            <br>
+                         
 
-                            <div class="form-check d-flex mt-2">
+                            <div class="form-check  col-md-6 mt-2">
                               <input class="form-check-input ml-10" type="radio" id="seven" name="radioamount" data-seva="maha-abhishekam-seva" value="2500">
                               <label class="form-check-label pl-10" for="seven">₹ 2500 - Maha Abhishekam Seva </label> &nbsp;
                             </div>
-                            <br>
-                            <div class="form-check d-flex mt-2">
+                          
+                            <div class="form-check  col-md-6 mt-2">
                               <input class="form-check-input ml-10" type="radio" id="seven" name="radioamount" data-seva="abhushan-seva" value="6000">
                               <label class="form-check-label pl-10" for="seven">₹ 6000 - Abhushan Seva </label> &nbsp;
                             </div>
-                            <br>
-                            <div class="form-check d-flex mt-2">
+                         
+                            <div class="form-check  col-md-6 mt-2">
                               <input class="form-check-input ml-10" type="radio" id="seven" name="radioamount" data-seva="phool-bangla-seva" value="1100">
                               <label class="form-check-label pl-10" for="seven">₹ 1100 - Phool Bangla Seva </label> &nbsp;
                             </div>
-                            <div class="form-check d-flex mt-2">
+                            <div class="form-check  col-md-6 mt-2">
                               <input class="form-check-input ml-10" type="radio" id="seven" name="radioamount" data-seva="gau-seva" value="3000">
                               <label class="form-check-label pl-10" for="seven">₹ 3000 - Gau Seva </label> &nbsp;
                             </div>
 
-                            <div class="form-check d-flex mt-2">
+                            <div class="form-check  col-md-6 mt-2">
                               <input class="form-check-input ml-10" type="radio" id="other" name="radioamount">
                               <label class="form-check-label pl-10" for="other"> Custom amount</label> &nbsp;
 
