@@ -40,7 +40,10 @@ form label{
                         <input id="seva_name" name="seva_name" type="hidden" value="">
                         <input type="hidden" name="slug" value="<?php echo $page_items->page_slug; ?>">
                         <input type="hidden" name="festival" value="krishnastami">
+                        <input type="hidden" name="tally_head" value="<?php !empty(($pag_items->tally_head)) ? $page_items->tally_head :  '-' ; ?>">
+                        <input type="hidden" name="seva_code" value="<?php !empty(($pag_items->seva_code)) ? $page_items->seva_code : '-'; ?>">
                         <input type="hidden" name="currency" value="INR">
+
 
                         <div class="row">
 
