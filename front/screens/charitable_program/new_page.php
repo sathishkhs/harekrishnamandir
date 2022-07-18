@@ -40,8 +40,8 @@ form label{
                         <input id="seva_name" name="seva_name" type="hidden" value="">
                         <input type="hidden" name="slug" value="<?php echo $page_items->page_slug; ?>">
                         <input type="hidden" name="festival" value="krishnastami">
-                        <input type="hidden" name="tally_head" value="<?php !empty(($pag_items->tally_head)) ? $page_items->tally_head :  '-' ; ?>">
-                        <input type="hidden" name="seva_code" value="<?php !empty(($pag_items->seva_code)) ? $page_items->seva_code : '-'; ?>">
+                        <input type="hidden" name="tally_head" value="<?php echo  !empty($page_items->tally_head) ? $page_items->tally_head :  'N/A' ; ?>">
+                        <input type="hidden" name="seva_code" value="<?php  echo !empty($page_items->seva_code) ? $page_items->seva_code : 'N/A'; ?>">
                         <input type="hidden" name="currency" value="INR">
 
 
@@ -201,7 +201,7 @@ form label{
     var selection;
     $(document).ready(function() {
 
-      $('.form-check-input ').on('change', function() {
+      $('.form-check-input ').on('click', function() {
         $('#custom-text').html('Selected Amount');
         $(this).prop('checked', 'checked');
         $('#amount').val($(this).val());
@@ -210,7 +210,7 @@ form label{
       })
       
 
-      $('#other').on('change', function() {
+      $('#other').on('click', function() {
         // var amount = $('#other').val()
         // $('#one, #two, #three, #five, #seven, #thousand, #fifteen, #twenty,#other').removeAttr('checked');
         $('#custom-text').html('Enter Custom Amount');

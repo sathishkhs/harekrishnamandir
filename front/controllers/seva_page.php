@@ -47,8 +47,8 @@ class Seva_Page extends MY_Controller
         }
 
 
-        if ($this->config->item('payment_mode') == 'test') {
-        } else {
+        // if ($this->config->item('payment_mode') == 'test') {
+        // } else {
             $curl = curl_init();
 
             curl_setopt_array($curl, array(
@@ -92,8 +92,9 @@ class Seva_Page extends MY_Controller
                     'name' => "$payment_data->full_name",
                     'email' => "$payment_data->email",
                     'phone_number' => "$payment_data->phone_number",
-                    'address' => "$payment_data->city",
+                    'address' => "$payment_data->address",
                     'amount' => "$payment_data->amount",
+                    "pan" => "$payment_data->pan_number",
                     'seva_id' => $payment_data->id,
                     'transaction_number' => "$payment_data->razorpay_payment_id",
                     'order_id' => "$payment_data->razorpay_order_id",
@@ -116,7 +117,7 @@ class Seva_Page extends MY_Controller
            
             }
            
-        }
+        // }
         $data['seva_name'] = $data['payment_data']->seva_name;
         $data['slug'] = $data['payment_data']->festival;
 
