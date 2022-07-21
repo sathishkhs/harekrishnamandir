@@ -46,6 +46,7 @@ class Festivals extends MY_Controller
         $data['keyId'] = $this->config->item('keyId');
         $data['company_name'] = $this->config->item('company_name');
         $data['company_description'] = $this->config->item('company_description');
+        $data['LOGO_IMAGE'] = SETTINGS_UPLOAD_PATH . $data['settings']->LOGO_IMAGE;
 
         $data['keyId'] = $keyId = $this->config->item('keyId');
         $this->festivals_model->data['festival'] = $data['festival'] = $festival = $this->input->post('festival');

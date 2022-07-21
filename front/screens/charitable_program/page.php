@@ -366,7 +366,7 @@
                                     "currency": data.responseJSON.currency,
                                     "name": data.responseJSON.company_name,
                                     "description": data.responseJSON.company_description,
-                                    "image": data.responseJSON.settings.LOGO_IMAGE,
+                                    "image": data.responseJSON.LOGO_IMAGE,
                                     "order_id": data.responseJSON.razorpay_order_id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
                                     "callback_url": data.responseJSON.callback_url,
                                     // "redirect": true,
