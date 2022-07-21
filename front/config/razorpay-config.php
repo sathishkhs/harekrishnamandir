@@ -1,7 +1,7 @@
 <?php
 
-$config['company_name'] = 'Hare krishna Mandir';
-$config['description'] = 'Hare krishna Mandir';
+$config['company_name'] = 'Hare Krishna Mandir';
+$config['description'] = 'Hare Krishna Mandir';
 $config['image'] = 'image/path';
 
 
