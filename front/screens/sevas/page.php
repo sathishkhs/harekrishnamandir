@@ -210,7 +210,7 @@
                         data-key="<?php echo $keyId; ?>"
                         data-amount="<?php echo $amount * 100; ?>"
                         data-currency="INR"
-                        data-name="<?php echo $this->settings->LOGO_IMAGE ?>"
+                        data-name="<?php echo $this->config->item('company_name') ?>"
                         data-image="<?php echo SETTINGS_UPLOAD_PATH . $settings->LOGO_IMAGE ?>"
                         data-description="<?php echo $this->config->item('description') ?>"
                         data-prefill.name="<?php echo $full_name ?>"
